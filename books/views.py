@@ -1,29 +1,22 @@
-from django.shortcuts import render
-from django.http import HttpResponse
-import random
-from datetime import datetime as dt
+from django.shortcuts import render, get_object_or_404
+from . import models
 
 
-def about_me_view(request):
+#detailView
+def bookDetailView(request, id):
     if request.method == 'GET':
-        return HttpResponse('1000-7')
+        book_id = get_object_or_404(models.Book, id=id)
+        context = {
+            'book_id': book_id
+        }
+    return render(request, template_name='books/book_detail.html', context=context)
 
 
-def authors_random_view(request):
+#listView
+def bookListView(request):
     if request.method == 'GET':
-        blogs_random = ['Рукописи не горят!', 'Влюбиться можно в красоту, но полюбить — лишь только душу!',
-                        'Разум бессилен перед криком сердца']
-        return HttpResponse(random.choice(blogs_random))
-
-def time_view(request):
-    if request.method == "GET":
-        time = dt.now()
-        hour = time.strftime("%H")
-        if 6 <= int(hour) <= 11:
-            return HttpResponse('Сейчас утро')
-        elif 12 <= int(hour) <= 14:
-            return HttpResponse('Сейчас обед')
-        elif 15<= int(hour) <= 20:
-            return HttpResponse("Сейчас вечер")
-        else:
-            return HttpResponse("Сейчас ночь")
+        book = models.Book.objects.all()
+        context = {
+            'book': book
+        }
+    return render(request, template_name='books/book.html', context=context)
