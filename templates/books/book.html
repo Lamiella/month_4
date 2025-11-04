@@ -1,17 +1,20 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Книги</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
+    {% include 'header.html' %}
     <h1>Все книги</h1>
     <ul>
         <!-- Цикл вставить тут -->
         {% for i in book %}
         <li>
-            <img src="{{ i.image.url }}" alt="" width="450" height="400">
+            <img src="{{ i.image.url }}" alt="{{ i.title }}">
             <h2>{{ i.title }}</h2>
             <a href="/book_list/{{ i.id }}/">Подробнее</a>
         </li>
@@ -20,5 +23,6 @@
         <!-- Цикл закрыть тут -->
 
     </ul>
+  {% include 'footer.html' %}
 </body>
 </html>
