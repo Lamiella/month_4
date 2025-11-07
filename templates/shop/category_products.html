@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Товары в категории {{ category.name }}</title>
+</head>
+<body>
+    {% include 'header.html' %}
+    <h1>Товары в категории: {{ category.name }}</h1>
+    <ul>
+        {% for product in products %}
+        <li>{{ product.name }} — {{ product.price }}</li>
+        {% endfor %}
+        </ul>
+        <p><a href="{% url 'categories' %}">Категории</a> | <a href="{% url 'products' %}">Товары</a></p>
+  {% include 'footer.html' %}
+</body>
+</html>
