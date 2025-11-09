@@ -1,0 +1,27 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Заказ</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+</head>
+<body>
+{% include 'header.html' %}
+<h1>Заказ</h1>
+    <ul>
+        {% for i in order %}
+        <li>
+            <h2>{{ i.address }}</h2>
+            <p>{{ i.inn }}</p>
+            <p>{{ i.payment }}</p>
+            <a href="/order_list/{{ i.id }}/delete/">Удалить</a>
+             <a href="/order_list/{{ i.id }}/update/">Изменить</a>
+        </li>
+        {% endfor %}
+    </ul>
+{% include 'footer.html' %}
+</body>
+</html>

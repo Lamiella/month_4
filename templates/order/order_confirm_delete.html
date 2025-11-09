@@ -1,0 +1,10 @@
+{% include 'header.html' %}
+
+<p>Вы уверены, что хотите удалить заказ?</p>
+<form method="post">
+{% csrf_token %}
+<button type="submit">Да</button>
+<a href="{% url 'order_list' %}"><button type="button">Нет</button></a>
+</form>
+
+{% include 'footer.html' %}
