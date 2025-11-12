@@ -40,6 +40,7 @@ class CustomRegisterForm(UserCreationForm):
     first_name = forms.CharField(max_length=100, required=True)
     last_name = forms.CharField(max_length=100, required=True)
     qualification = forms.ChoiceField(choices=QUALIFICATION, required=True)
+    captcha = CaptchaField()
 
     class Meta:
         model = models.CustomUser
