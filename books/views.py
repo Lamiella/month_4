@@ -2,6 +2,16 @@ from django.shortcuts import render, get_object_or_404
 from . import models
 from django.db.models import Avg
 
+#search
+def searchView(request):
+    query = request.GET.get('s', '')
+    book = models.Book.objects.filter(title__icontains=query) if query else models.Book.none
+    context = {
+        'book': book,
+        's': query
+    }
+    return render(request, template_name='books/book.html', context=context)
+
 
 #detailView
 def bookDetailView(request, id):
